@@ -1,0 +1,29 @@
+stages:
+  - quality
+
+image: node:lts
+
+cache:
+  paths:
+    - .yarn
+
+before_script:
+  - yarn install
+
+lint:
+  stage: quality
+  needs: []
+  script:
+    - yarn lint
+
+test:
+  stage: quality
+  needs: []
+  script:
+    - yarn test:ci
+
+typescript:
+  stage: quality
+  needs: []
+  script:
+    - yarn types:check
